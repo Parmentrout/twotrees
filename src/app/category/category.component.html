@@ -1,0 +1,7 @@
+Bananas
+<mat-card class="item" *ngIf="category" (dblclick)="edit.emit(category!)">
+    <h2>{{ category!.title }}</h2>
+    <p>
+      {{ category!.description }}
+    </p>
+</mat-card>
