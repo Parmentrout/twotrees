@@ -14,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), 
     provideFirebaseApp(() => initializeApp({ projectId: "two-trees-woodworking", appId: "1:329365960193:web:7c24115e68520e703c3200", storageBucket: "two-trees-woodworking.firebasestorage.app", apiKey: "AIzaSyApQPWbG3LeNZzDogi2m7PhC7G0RSd6-aQ", authDomain: "two-trees-woodworking.firebaseapp.com", messagingSenderId: "329365960193", measurementId: "G-HFEE6LTZCC" })), 
     provideAuth(() => getAuth()), 
-    provideFirestore(() => getFirestore())]
+    provideFirestore(() => getFirestore())
+  ],
 };

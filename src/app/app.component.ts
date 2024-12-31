@@ -1,44 +1,41 @@
-import { Component } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
-import { MatToolbar } from '@angular/material/toolbar';
-import { RouterOutlet } from '@angular/router';
-import { Category } from './category/category';
-import { CategoryComponent } from './category/category.component';
+import { Component, ViewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Firestore, collection, setDoc, doc } from '@angular/fire/firestore';
-
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbar, MatIcon, CategoryComponent, CommonModule],
+  imports: [
+    RouterOutlet, 
+    CommonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    RouterModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private fireStore: Firestore) {}
-  categories: Category[] = [
-    {
-      title: 'Tables',
-      description: 'lorem'
-    },
-    {
-      title: 'Charcuterie Boards',
-      description: 'Put something amazing here'
-    }
-  ];
+  @ViewChild('drawer') sidenav!: MatSidenav;
+  isDesktop = true;
 
-  async updateData() {
-    const collectionName = 'test'; // Replace with your Firestore collection
-    const docId = '2'; // Replace with your document ID
-    const data = { fieldName: 'newValue' }; // Replace with your data
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
-    const collectionRef = collection(this.fireStore, collectionName);
-    const docRef = doc(collectionRef, docId);
-    try {
-      await setDoc(docRef, { fieldName: 'newValue' });
-      console.log('Document updated successfully');
-    } catch (error) {
-      console.error('Error updating document:', error);
-    }
+  ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      this.isDesktop = !result.matches;
+      if (!this.isDesktop) {
+        this.sidenav?.close();
+      }
+    });
   }
 }
