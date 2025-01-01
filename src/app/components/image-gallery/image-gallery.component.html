@@ -1,0 +1,9 @@
+<div class="gallery" *ngIf="gallery">
+    <div class="image-card">
+        <h3>{{ gallery.title }}</h3>
+        <div class="images">
+            <img *ngFor="let img of gallery.image_urls" [src]="img" [alt]="gallery.title" />
+        </div>
+        <p>{{ gallery.description }}</p>
+    </div>
+  </div>

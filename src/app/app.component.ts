@@ -5,7 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Firestore } from '@angular/fire/firestore';
 
@@ -28,7 +28,7 @@ export class AppComponent {
   @ViewChild('drawer') sidenav!: MatSidenav;
   isDesktop = true;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
 
   ngOnInit(): void {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
@@ -37,5 +37,11 @@ export class AppComponent {
         this.sidenav?.close();
       }
     });
+
+    this.router.events.subscribe(() => {
+      if (!this.isDesktop && this.sidenav) {
+        this.sidenav.close();
+      }
+    })
   }
 }

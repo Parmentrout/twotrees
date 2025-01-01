@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { collection, doc, setDoc } from 'firebase/firestore';
-import { Category } from '../category/category';
-import { FirestoreModule, Firestore } from '@angular/fire/firestore';
+import { Category } from '../components/category/category';
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',

@@ -1,0 +1,43 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .image-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .image-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .image-card h3 {
+    margin: 8px 0;
+  }
+  
+  .image-card p {
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .images img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
